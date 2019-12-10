@@ -34,7 +34,8 @@ module.exports = { // BASE config
     }
   },
   module: {
-    rules: [{
+    rules: [
+      {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: '/node_modules/'
@@ -79,8 +80,14 @@ module.exports = { // BASE config
           options: { sourceMap: true, config: { path: `${PATHS.src}/assets/postcss.config.js` } }
         }
       ]
-    },
+    }, {
+      test: /\.html$/,
+      loader: 'raw-loader'
+    }
     ]
+  },
+  resolve: {
+    extensions: ['.js'],
   },
   plugins: [
     new MiniCssExtractPlugin({

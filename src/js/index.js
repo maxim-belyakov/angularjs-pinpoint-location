@@ -1,1 +1,3 @@
-console.log('.js connected')
+
+
+import './mapCtrl.js'
