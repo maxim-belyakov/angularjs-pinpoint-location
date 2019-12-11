@@ -11,49 +11,61 @@
         <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
         <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+
         <title>AngularJS Pinpoint Loader</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 10vh;">
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Location <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My location</a>
-                    </li>
-                </ul>
-                <span class="navbar-text"> {{1+1}} </span>
+        <div ng-controller="mapCtrl as mapCtrl">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 10vh;">
+                <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Location <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <md-button ng-click="mapCtrl.defineMyLocation()" aria-label="My location" class="text-light btn btn-link text-decoration-none">
+                                My location
+                            </md-button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div style="height: 80vh;">
+                <div id="map" style="height: 100%;"></div>
             </div>
-        </nav>
-        <div ng-controller="mapCtrl as mapCtrl" style="height: 80vh;">
-            <div id="map" style="height: 100%;"></div>
+            <nav style="position:fixed;bottom:0;width:100%;height: 10vh;" class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <!-- <a class="navbar-brand" href="#">Footer</a> -->
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto" style="margin: 0 auto;">
+                        <li class="nav-item">
+                            <div class="input-group">
+                                <span class="input-group-prepend text-light btn btn-link text-decoration-none">Lattitude</span>
+                                <input class="input-group-text" type="text" ng-model="mapCtrl.latitude">
+                            </div>
+                        </li>
+                        <li class="nav-item" style="margin-right: 50px">
+                            <div class="input-group">
+                                <span class="input-group-prepend text-light btn btn-link text-decoration-none">Longitute</span>
+                                <input class="input-group-text" type="text" ng-model="mapCtrl.longitude">
+                            </div>
+                        </li>
+                        <li class="nav-item" style="margin-right: 30px">
+                            <button ng-click="mapCtrl.loadLocation()" type="button" class="btn btn-primary" style="min-width: 80px;">Load</button>
+                        </li>
+                        <li class="nav-item">
+                            <button ng-click="mapCtrl.saveLocation()" type="button" class="btn btn-primary" style="min-width: 80px;">Save</button>
+                        </li>
+                    </ul>
+                    <span class="navbar-text"> Maxim Belyakov </span>
+                </div>
+            </nav>
         </div>
-        <nav style="position:fixed;bottom:0;width:100%;height: 10vh;" class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- <a class="navbar-brand" href="#">Footer</a> -->
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <button>Lattitude</button>
-                    </li>
-                    <li class="nav-item">
-                        <button>Longitute</button>
-                    </li>
-                    <li class="nav-item">
-                        <button>Load</button>
-                    </li>
-                    <li class="nav-item">
-                        <button>Save</button>
-                    </li>
-                </ul>
-                <span class="navbar-text"> Maxim Belyakov </span>
-            </div>
-        </nav>
     </body>
 </html>
